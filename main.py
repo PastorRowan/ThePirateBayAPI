@@ -36,7 +36,8 @@ def main():
         print("Parsing json response")
         print()
 
-        data = json.load(response)
+        # Type depends on what response is
+        data: any = json.load(response)
 
         print(f"Dumping pretty json response into '{RESPONSE_FILE_NAME}'")
         print()
@@ -45,9 +46,13 @@ def main():
             file=RESPONSE_FILE_NAME,
             mode="w"
         ) as response_json_file:
-            json.dump(data, response_json_file, indent=4)
+            json.dump(
+                obj=data,
+                fp=response_json_file,
+                indent=4
+            )
 
-    print(f"Successfully made request to '{URL}' and dumped response into '{RESPONSE_FILE_NAME}'")
+    print(f"Successfully made request '{URL}' and dumped response into '{RESPONSE_FILE_NAME}'")
 
 if __name__ == "__main__":
     main()
