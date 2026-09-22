@@ -37,7 +37,9 @@ def main():
         print()
 
         # Type depends on what response is
-        data: any = json.load(response)
+        data: any = json.load(
+            fp=response
+        )
 
         print(f"Dumping pretty json response into '{RESPONSE_FILE_NAME}'")
         print()
